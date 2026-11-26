@@ -17,6 +17,10 @@ db.init_app(app)
 migrate = Migrate(app, db)
 api = Api(app)
 
+# Importa todos los modelos para que Flask-Migrate los detecte,
+# sin depender de que algún resource los importe.
+import models  # noqa: F401
+
 from router import register_routes
 
 register_routes(api)
