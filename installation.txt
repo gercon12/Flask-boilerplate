@@ -2,5 +2,10 @@ python -m venv venv
 
 source venv/Scripts/activate
 
-
 pip install -r requirements.txt
+
+flask db init
+
+flask db migrate -m "crear tabla users"
+
+flask db upgrade
