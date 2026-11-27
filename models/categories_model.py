@@ -1,8 +1,9 @@
+#importacion de librerias
 from db import db
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import Integer, String, Boolean
 
-#columnas: id, name, is_active
+# columnas: id, name, is_active
 class CategoryModel(db.Model):
     __tablename__ = 'categories'
 
