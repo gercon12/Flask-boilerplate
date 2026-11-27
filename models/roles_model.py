@@ -2,7 +2,7 @@ from db import db
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import Integer, String
 
-class Role(db.Model):
+class RoleModel(db.Model):
     __tablename__ = 'roles'
 
     #   nullable=False significa que no puede ser nulo, es decir, debe tener un valor.
