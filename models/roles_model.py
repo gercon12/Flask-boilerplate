@@ -1,5 +1,5 @@
 from db import db
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Integer, String
 
 class RoleModel(db.Model):
@@ -8,3 +8,12 @@ class RoleModel(db.Model):
     #   nullable=False significa que no puede ser nulo, es decir, debe tener un valor.
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)
+
+    users = relationship("UserModel", back_populates="role")
+
+    def to_json(self):
+        return {
+             "id": self.id,
+              "name": self.name
+        }
+       

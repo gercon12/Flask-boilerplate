@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Integer, String, Text, Boolean, DateTime, func, ForeignKey
 from db import db
 from datetime import datetime
@@ -20,6 +20,14 @@ class UserModel(db.Model):
 
     #llave foranea
     role_id: Mapped[int] = mapped_column(Integer, ForeignKey('roles.id'), nullable=False)
+
+    #Establecer las relaciones de las tablas
+    #Para poder acceder a los datos de una forma mas sencilla
+    #users N:1 roles
+
+    role = relationship("RoleModel", back_populates = "users")
+
+
 
 
 

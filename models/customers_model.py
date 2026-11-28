@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Integer, String, Text, Boolean, DateTime, func, ForeignKey
 from db import db
 
@@ -13,4 +13,7 @@ class CustomerModel(db.Model):
     email: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
     document_number: Mapped[str] = mapped_column(String(20), unique=True, nullable=False)
     address: Mapped[str] = mapped_column(String(200), nullable=True)
+
+    #relacion
+    sales= relationship("SaleModel", back_populates="customers")
     

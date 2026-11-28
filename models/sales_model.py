@@ -1,5 +1,5 @@
 from db import db
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column,relationship
 from sqlalchemy import Integer, String, DECIMAL, DateTime, ForeignKey, func, Enum as SqlEnum
 from datetime import datetime
 
@@ -24,3 +24,7 @@ class SaleModel(db.Model):
 
     #foreign key
     customer_id: Mapped[int] = mapped_column(Integer, ForeignKey('customers.id'), nullable=False)
+
+    #Relacion
+    customers = relationship("CustomerModel", back_populates="sales")
+    sales_details = relationship("SaleDetailModel", back_populates="sales")

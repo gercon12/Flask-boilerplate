@@ -1,5 +1,5 @@
 from db import db
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Integer, DECIMAL, ForeignKey
 
 
@@ -15,3 +15,7 @@ class SaleDetailModel(db.Model):
     #foreign keys
     product_id: Mapped[int] = mapped_column(Integer, ForeignKey('products.id'), nullable=False)
     sale_id: Mapped[int] = mapped_column(Integer, ForeignKey('sales.id'), nullable=False)
+
+    #Relacion
+    sales = relationship("SaleModel", back_populates="sales_details")
+    products = relationship("ProductModel", back_populates="sales_details")

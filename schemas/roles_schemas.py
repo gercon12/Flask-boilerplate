@@ -1,0 +1,5 @@
+# validar datos de los roles
+from pydantic import BaseModel, Field
+
+class RoleSchema(BaseModel):
+    name: str = Field(min_length=3, max_length=50)

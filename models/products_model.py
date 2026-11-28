@@ -1,5 +1,5 @@
 from db import db
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Integer, String, Text, DECIMAL, Boolean, ForeignKey
 
 #columnas: id, name, code, description, image, brand, size, price, stock, is_active, category_id
@@ -19,3 +19,7 @@ class ProductModel(db.Model):
 
     #llave foranea
     category_id: Mapped[int] = mapped_column(Integer, ForeignKey('categories.id'), nullable=False)
+
+    #Relacion
+    categories = relationship("CategoryModel", back_populates="products")
+    sales_details = relationship("SaleDetailModel", back_populates="products")
